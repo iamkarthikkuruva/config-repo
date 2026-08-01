@@ -37,6 +37,6 @@ management:
       exposure:
         include: "*"    # Expose all actuator endpoints
   # zipkin server configurations
-  tracing:
-    sampling:
-      probability: 1.0  # 100% tracing sampling
+#  tracing:
+#    sampling:
+#      probability: 1.0  # 100% tracing sampling
