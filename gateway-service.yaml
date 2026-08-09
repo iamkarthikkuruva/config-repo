@@ -13,7 +13,7 @@ spring:
               predicates:
                 - Path=/restaurant/**
             - id: food-catalogue-service
-              uri: lb:food-catalogue-service
+              uri: lb://food-catalogue-service
               predicates:
                 - Path=/foodCatalogue/**
             - id: order-service
