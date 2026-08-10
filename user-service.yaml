@@ -46,3 +46,8 @@ management:
   tracing:
     sampling:
       probability: 1.0  # 100% tracing sampling
+info:
+  app:
+    name: user-service
+    description: User microservice
+    version: 1.0.0
