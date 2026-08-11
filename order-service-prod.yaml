@@ -1,0 +1,61 @@
+server:
+  port: 9094
+
+spring:
+  # MongoDB Datasource configuration
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/orderdb
+
+  # Spring Boot Admin Client configuration
+  boot:
+    admin:
+      client:
+        url: http://localhost:9999
+
+# Eureka client configuration
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  # InstanceId
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+
+# Management endpoints configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"    # Expose all actuator endpoints
+  endpoint:
+    health:
+      show-details: always    # see DB/Redis/Eureka breakdown, not just UP/DOWN
+    refresh:
+      enabled: true           # explicit, though usually on by default when exposed
+    shutdown:
+      enabled: false          # keep off even locally — no reason to allow remote kill
+  info:
+    env:
+      enabled: true           # pulls your info.* block into /actuator/info
+    java:
+      enabled: true           # JVM version/vendor
+    os:
+      enabled: true           # OS name/arch
+    build:
+      enabled: true           # needs build-info.properties (Maven/Gradle plugin) to show anything
+    git:
+      enabled: true           # needs git.properties to show anything
+  # zipkin server configurations
+  tracing:
+    sampling:
+      probability: 1.0  # 100% tracing sampling
+
+info:
+  app:
+    name: Order Service
+    description: REST APIs for managing Order Details
+    version: 1.0.0
+    environment: ${spring.profiles.active:local}
+    team: backend-team
+    instance-id: ${HOSTNAME:unknown}
